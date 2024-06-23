@@ -1,16 +1,10 @@
-# do_re_mind
+# DoReMind
 
-aplicacion para aprender sobre teoria musical
+Aplicación creada para aprender y practicar todo sobre la lectura musical
 
-## Getting Started
+## Tecnologias
 
-This project is a starting point for a Flutter application.
+Este proyecto esta construido sobre Flutter, que utilizar el lenguaje de programación Dart creado por Google para inicialmente desarrollo movil, pero actualmente tambien se usa en desarrollo web
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Documentación oficial: primer proyecto de Flutter](https://docs.flutter.dev/get-started/codelab)
+- [Ejemplos en Flutter](https://docs.flutter.dev/cookbook)
