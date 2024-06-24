@@ -15,7 +15,7 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Do-ReMind123',
+              'Do-ReMind',
               style: TextStyle(
                 fontSize: 50,
                 color: Colors.white,

@@ -12,7 +12,7 @@ class ModulesView extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          'Do-ReMind123',
+          'Do-ReMind',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         automaticallyImplyLeading: false,
@@ -36,8 +36,7 @@ class ModulesView extends StatelessWidget {
           ),
           const Text('Duración de las notas', style: TextStyle(fontSize: 30)),
           GestureDetector(
-            child: Image.network(
-                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQuDVnT3AwklnpWUGqCRCOhqYA-cpArG0qe7ZuEqcgegz_w0-x26_y1L-HEPBxe8k-iCzP1Mw1uJ8__ZyR4Xua0AzAw721f1Y850yx6SBHdQxAvG8Ko9IJgM7YuRZGuM6Z11RJ-j-kTk4/w400-h173/figuras+musicales.png'),
+            child: Image.asset('assets/figuras_musicales.png'),
             onTap: () => {
               {Navigator.pushNamed(context, ExcercisesView.id)}
             },

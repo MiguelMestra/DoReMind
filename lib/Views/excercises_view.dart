@@ -1,4 +1,6 @@
 import 'package:do_re_mind/Views/modules_view.dart';
+import 'package:do_re_mind/Views/teoric_duration_view.dart';
+import 'package:do_re_mind/Views/teoric_tone_view.dart';
 import 'package:flutter/material.dart';
 
 class ExcercisesView extends StatelessWidget {
@@ -26,20 +28,24 @@ class ExcercisesView extends StatelessWidget {
             'Teorico',
             style: TextStyle(fontSize: 30),
           ),
-          GestureDetector(
-            child: Image.network(
-                'https://www.safecreative.org/blog/es/wp-content/uploads/2022/09/partitura-para-escribir-una-cancion.jpg'),
-            onTap: () => {
-              {Navigator.pushNamed(context, ModulesView.id)}
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              child: Image.asset('assets/lapiz_partitura.jpg'),
+              onTap: () => {
+                {Navigator.pushNamed(context, TeoricToneView.id)}
+              },
+            ),
           ),
           const Text('Practico', style: TextStyle(fontSize: 30)),
-          GestureDetector(
-            child: Image.network(
-                'https://previews.123rf.com/images/yummybuum/yummybuum2011/yummybuum201100167/159142867-aprendizaje-de-la-clase-de-m%C3%BAsica-los-j%C3%B3venes-estudiantes-escuchan-al-maestro-hombre-feliz-con.jpg'),
-            onTap: () => {
-              {Navigator.pushNamed(context, ModulesView.id)}
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              child: Image.asset('assets/clase_musica.jpg'),
+              onTap: () => {
+                {Navigator.pushNamed(context, TeoricDurationView.id)}
+              },
+            ),
           )
         ])),
       ),
