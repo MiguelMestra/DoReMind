@@ -1,4 +1,5 @@
-import 'package:do_re_mind/Views/excercises_view.dart';
+import 'package:do_re_mind/Views/education_duration_view.dart';
+import 'package:do_re_mind/Views/education_intensity_view.dart';
 import 'package:do_re_mind/Views/login_view.dart';
 import 'package:flutter/material.dart';
 
@@ -31,14 +32,14 @@ class ModulesView extends StatelessWidget {
             child: Image.network(
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCva2R5xvXgo3-8jMqAJsR4wkhSqXahnTHGw&s'),
             onTap: () => {
-              {Navigator.pushNamed(context, ExcercisesView.id)}
+              {Navigator.pushNamed(context, EducationIntensityView.id)}
             },
           ),
           const Text('Duración de las notas', style: TextStyle(fontSize: 30)),
           GestureDetector(
             child: Image.asset('assets/figuras_musicales.png'),
             onTap: () => {
-              {Navigator.pushNamed(context, ExcercisesView.id)}
+              {Navigator.pushNamed(context, EducationDurationView.id)}
             },
           )
         ])),

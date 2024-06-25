@@ -1,5 +1,4 @@
-import 'package:do_re_mind/Views/excercises_view.dart';
-import 'package:do_re_mind/Views/modules_view.dart';
+import 'package:do_re_mind/Views/education_intensity_view.dart';
 import 'package:flutter/material.dart';
 
 class TeoricDurationView extends StatelessWidget {
@@ -70,7 +69,7 @@ class TeoricDurationView extends StatelessWidget {
       ) 
       ,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {Navigator.pushNamed(context, ExcercisesView.id)},
+        onPressed: () => {Navigator.pushNamed(context, EducationIntensityView.id)},
         child: const Icon(Icons.arrow_back_outlined),
     ),
     );
