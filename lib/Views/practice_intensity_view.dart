@@ -1,11 +1,6 @@
 import 'package:do_re_mind/Views/education_intensity_view.dart';
-import 'package:do_re_mind/Views/modules_view.dart';
-import 'package:do_re_mind/Views/teoric_duration_view.dart';
-import 'package:do_re_mind/Views/teoric_tone_view.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-
-import 'package:flutter/scheduler.dart';
 
 class PracticeIntensityView extends StatefulWidget {
   const PracticeIntensityView({super.key});
@@ -97,7 +92,7 @@ class _PracticeIntensityViewState extends State<PracticeIntensityView> {
                   setState(() {
                     initDialogShown = true;
                   });
-                  generatePoints(); // Generar puntos después de cerrar el initDialog
+                  generatePoints(); 
                 },
               ),
             ],
@@ -209,6 +204,11 @@ class _PracticeIntensityViewState extends State<PracticeIntensityView> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            {Navigator.pushNamed(context, EducationIntensityView.id)},
+        child: const Icon(Icons.arrow_back_outlined),
       ),
     );
   }

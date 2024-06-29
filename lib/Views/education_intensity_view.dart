@@ -1,6 +1,5 @@
 import 'package:do_re_mind/Views/modules_view.dart';
 import 'package:do_re_mind/Views/practice_intensity_view.dart';
-import 'package:do_re_mind/Views/teoric_duration_view.dart';
 import 'package:do_re_mind/Views/teoric_tone_view.dart';
 import 'package:flutter/material.dart';
 

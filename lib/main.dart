@@ -1,4 +1,3 @@
-import 'package:do_re_mind/Views/practice_intensity_view.dart';
 import 'package:do_re_mind/router/routes.dart';
 import 'package:do_re_mind/views/login_view.dart';
 import 'package:flutter/material.dart';

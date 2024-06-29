@@ -1,6 +1,6 @@
 import 'package:do_re_mind/Views/modules_view.dart';
+import 'package:do_re_mind/Views/practice_duration_view.dart';
 import 'package:do_re_mind/Views/teoric_duration_view.dart';
-import 'package:do_re_mind/Views/teoric_tone_view.dart';
 import 'package:flutter/material.dart';
 
 class EducationDurationView extends StatelessWidget {
@@ -43,7 +43,7 @@ class EducationDurationView extends StatelessWidget {
             child: GestureDetector(
               child: Image.asset('assets/clase_musica.jpg'),
               onTap: () => {
-                {Navigator.pushNamed(context, TeoricDurationView.id)}
+                {Navigator.pushNamed(context, PracticeDurationView.id)}
               },
             ),
           )
