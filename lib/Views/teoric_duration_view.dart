@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:do_re_mind/Views/education_duration_view.dart';
 import 'package:do_re_mind/Views/education_intensity_view.dart';
 import 'package:flutter/material.dart';
 
@@ -126,7 +127,7 @@ class TeoricDurationView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () =>
-            {Navigator.pushNamed(context, EducationIntensityView.id)},
+            {Navigator.pushNamed(context, EducationDurationView.id)},
         child: const Icon(Icons.arrow_back_outlined),
       ),
     );

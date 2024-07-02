@@ -1,5 +1,4 @@
 import 'package:do_re_mind/Views/education_duration_view.dart';
-import 'package:do_re_mind/Views/education_intensity_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
@@ -28,11 +27,12 @@ class _PracticeDurationViewState extends State<PracticeDurationView> {
   @override
   void initState() {
     super.initState();
+    initImages();
     loadSounds().then((_) {
       setState(() {
         soundsLoaded = true;
       });
-      reset();
+      generateSounds();
     });
   }
 
