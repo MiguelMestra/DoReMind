@@ -74,31 +74,34 @@ class _PracticeIntensityViewState extends State<PracticeIntensityView> {
         return AlertDialog(
           content: SingleChildScrollView(
             child: Column(
-            children: [
-              const Text(
-                'Debes elegir las notas correctas lo más rápido posible.\n\n',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
-              ),
-              const Text(
-                'Pulsa OK para empezar.\n',
-                textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              ElevatedButton(
-                child: const Text('OK', style: TextStyle(fontSize: 15),),
-                onPressed: () {
-                  timeInitialize();
-                  Navigator.of(context).pop();
-                  setState(() {
-                    initDialogShown = true;
-                  });
-                  generatePoints(); 
-                },
-              ),
-            ],
+              children: [
+                const Text(
+                  'Debes elegir las notas correctas lo más rápido posible.\n\n',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
+                const Text(
+                  'Pulsa OK para empezar.\n',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                ElevatedButton(
+                  child: const Text(
+                    'OK',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  onPressed: () {
+                    timeInitialize();
+                    Navigator.of(context).pop();
+                    setState(() {
+                      initDialogShown = true;
+                    });
+                    generatePoints();
+                  },
+                ),
+              ],
+            ),
           ),
-          )
-          
         );
       },
     );
