@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "475982991222",
+    "project_id": "doremind-a6335",
+    "storage_bucket": "doremind-a6335.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475982991222:android:60bdce3492aa7a0426f457",
+        "android_client_info": {
+          "package_name": "com.doremind.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475982991222-lnogtrgid34lee4qarv6v48n0ec1tnm0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doremind.app",
+            "certificate_hash": "2ba8a1b6fe86d063b7e51757c79111f37d3c3d68"
+          }
+        },
+        {
+          "client_id": "475982991222-jjtc7m28hcsmepl42tr7irt7doautdbm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzE8u8ic3EFSQ3QEY2Zxt_5mDe2QyLMgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475982991222-ea2o5ls5i2opls65bj3ol79kan3n4pv1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "475982991222-ofjl2bq8ftc35h8me7svv98env623cji.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.doReMind"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
