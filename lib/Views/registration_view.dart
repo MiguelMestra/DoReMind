@@ -53,8 +53,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                       border: InputBorder.none,
                       labelText: 'email',
                       labelStyle: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w700)),
+                          color: Colors.white60, fontWeight: FontWeight.w700)),
                   onChanged: (value) {},
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
             ),
@@ -73,33 +74,47 @@ class _RegistrationViewState extends State<RegistrationView> {
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(color: Colors.white)),
                 child: TextField(
+                  obscureText: true,
                   controller: passwordController,
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       border: InputBorder.none,
                       labelText: 'password',
                       labelStyle: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w700)),
+                          color: Colors.white60, fontWeight: FontWeight.w700)),
                   onChanged: (value) {},
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
             ),
             ElevatedButton(
-                onPressed: ()async {
+                onPressed: () async {
                   String email = emailController.text;
                   String password = emailController.text;
                   var result = await _auth.createAccount(email, password);
-                  if (result ==1 ){
+                  if (result == 1) {
                     print('Password demasiado debil');
-                  }else if (result ==2){
+                  } else if (result == 2) {
                     print('Email ya esta en uso');
-                  }else if (result!=null){
+                  } else if (result != null) {
                     Navigator.pushNamed(context, LoginView.id);
                   }
-
-                  
                 },
-                child: const Text('Registrar'))
+                child: const Text('Registrar')),
+
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+            GestureDetector(
+              child: const Text(
+                "Volver a Inicio de Sesión",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 230, 226, 174),
+                    fontSize: 15,),
+                textAlign: TextAlign.center,
+              ),
+              onTap: () => {Navigator.pushNamed(context, LoginView.id)},
+            )
           ],
         ),
       ),

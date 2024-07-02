@@ -1,4 +1,3 @@
-import 'package:do_re_mind/Views/registration_view.dart';
 import 'package:do_re_mind/firebase_options.dart';
 import 'package:do_re_mind/router/routes.dart';
 import 'package:do_re_mind/views/login_view.dart';
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
           useMaterial3: true),
-      initialRoute: RegistrationView.id,
+      initialRoute: LoginView.id,
       routes: customRoutes,
     );
   }
