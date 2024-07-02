@@ -19,7 +19,8 @@ class EducationDurationView extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.purple,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        child: Center(
         child: (Column(children: [
           const SizedBox(
             height: 10,
@@ -48,6 +49,7 @@ class EducationDurationView extends StatelessWidget {
             ),
           )
         ])),
+      ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {Navigator.pushNamed(context, ModulesView.id)},

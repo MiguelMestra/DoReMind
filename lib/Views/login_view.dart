@@ -12,11 +12,74 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
+  
+void showErrorDialog(String message) {
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.purple[100],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+        ),
+        title: Text(
+          'Error',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.purple[900],
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.purple[700],
+                ),
+              ),
+              SizedBox(height: 20), // Añadir espacio entre el texto y el botón
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, backgroundColor: Colors.purple[700], // Color del texto del botón
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(fontSize: 15),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    reset();
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+  void reset() {
+    emailController.text = "";
+    passwordController.text = "";
+  }
+
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.purple,
@@ -47,16 +110,16 @@ class _LoginViewState extends State<LoginView> {
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(color: Colors.white)),
                 child: TextField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      labelText: 'email',
-                      labelStyle: TextStyle(
-                          color: Colors.white60, fontWeight: FontWeight.w700)),
-                  onChanged: (value) {},
-                  style: const TextStyle(color: Colors.white)
-                ),
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        labelText: 'email',
+                        labelStyle: TextStyle(
+                            color: Colors.white60,
+                            fontWeight: FontWeight.w700)),
+                    onChanged: (value) {},
+                    style: const TextStyle(color: Colors.white)),
               ),
             ),
 
@@ -90,22 +153,36 @@ class _LoginViewState extends State<LoginView> {
             ElevatedButton(
                 onPressed: () async {
                   String email = emailController.text;
-                  String password = emailController.text;
-                  var result = await _auth.singInEmailAndPassword(email, password);
-                  if (result ==1 ){
-                    print('Usuario no existente');
-                  }else if (result ==2){
-                    print('Contraseña equivocada');
-                  }else if (result!=null){
+                  String password = passwordController.text;
+                  var result =
+                      await _auth.singInEmailAndPassword(email, password);
+                  if (result == 1) {
+                    showErrorDialog("Credenciales de autenticación inválidas");
+                  } else if (result == 2) {
+                    showErrorDialog("Email Invalido");
+                  } else if (result == 3) {
+                    showErrorDialog("La contraseña no debe ser vacia");
+                  }else if (result != null) {
+                    // ignore: use_build_context_synchronously
                     Navigator.pushNamed(context, ModulesView.id);
-                  }},
+                  }
+                },
                 child: const Text('Iniciar Sesion')),
 
-            SizedBox(height: size.height*0.05,),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
             GestureDetector(
-              child: const Text("¿Aun no estas registrado?\nHazlo aquí",
-            style: TextStyle(color: Color.fromARGB(255, 230, 226, 174), fontSize: 15, decoration: TextDecoration.underline, decorationColor:  Color.fromARGB(255, 230, 226, 174), decorationThickness: 1),
-            textAlign: TextAlign.center,),
+              child: const Text(
+                "¿Aun no estas registrado?\nHazlo aquí",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 230, 226, 174),
+                    fontSize: 15,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Color.fromARGB(255, 230, 226, 174),
+                    decorationThickness: 1),
+                textAlign: TextAlign.center,
+              ),
               onTap: () => {Navigator.pushNamed(context, RegistrationView.id)},
             )
           ],

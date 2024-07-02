@@ -12,11 +12,76 @@ class RegistrationView extends StatefulWidget {
 
 class _RegistrationViewState extends State<RegistrationView> {
   final AuthService _auth = AuthService();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void showErrorDialog(String message) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.purple[100],
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          ),
+          title: Text(
+            'Error',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.purple[900],
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.purple[700],
+                  ),
+                ),
+                SizedBox(
+                    height: 20), // Añadir espacio entre el texto y el botón
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor:
+                        Colors.purple[700], // Color del texto del botón
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text(
+                    'OK',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    setState(() {
+                      reset();
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void reset() {
+    emailController.text = "";
+    passwordController.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.purple,
@@ -90,13 +155,17 @@ class _RegistrationViewState extends State<RegistrationView> {
             ElevatedButton(
                 onPressed: () async {
                   String email = emailController.text;
-                  String password = emailController.text;
+                  String password = passwordController.text;
                   var result = await _auth.createAccount(email, password);
                   if (result == 1) {
-                    print('Password demasiado debil');
+                    showErrorDialog("La contraseña es demasiado debil");
                   } else if (result == 2) {
-                    print('Email ya esta en uso');
-                  } else if (result != null) {
+                    showErrorDialog("El correo digitado ya está en uso");
+                  } else if (result == 3) {
+                    showErrorDialog("Email Invalido");
+                  }  else if (result == 4) {
+                    showErrorDialog("La contraseña no debe ser vacia");
+                  }else if (result != null) {
                     Navigator.pushNamed(context, LoginView.id);
                   }
                 },
@@ -109,8 +178,9 @@ class _RegistrationViewState extends State<RegistrationView> {
               child: const Text(
                 "Volver a Inicio de Sesión",
                 style: TextStyle(
-                    color: Color.fromARGB(255, 230, 226, 174),
-                    fontSize: 15,),
+                  color: Color.fromARGB(255, 230, 226, 174),
+                  fontSize: 15,
+                ),
                 textAlign: TextAlign.center,
               ),
               onTap: () => {Navigator.pushNamed(context, LoginView.id)},

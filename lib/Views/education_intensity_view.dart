@@ -19,7 +19,8 @@ class EducationIntensityView extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.purple,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        child: Center(
         child: (Column(children: [
           const SizedBox(
             height: 10,
@@ -48,7 +49,7 @@ class EducationIntensityView extends StatelessWidget {
             ),
           )
         ])),
-      ),
+      ),),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {Navigator.pushNamed(context, ModulesView.id)},
         child: const Icon(Icons.arrow_back_outlined),

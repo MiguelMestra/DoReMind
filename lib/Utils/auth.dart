@@ -17,6 +17,10 @@ class AuthService{
       }else if (e.code=='email-already-in-use') {
         print("The account already exists for that email");
         return 2;
+      }else if (e.code=='invalid-email'){
+        return 3;
+      }else if (e.code=='missing-password'){
+        return 4;
       }
     }
      catch(e){
@@ -33,10 +37,12 @@ class AuthService{
         return user?.uid;
       }
     } on FirebaseAuthException catch (e){
-      if (e.code == 'user-not-found'){
+      if (e.code == 'invalid-credential'){
         return 1;
-      } else if (e.code=='wrong-password'){
+      } else if (e.code=='invalid-email'){
         return 2;
+      } else if (e.code=='missing-password'){
+        return 3;
       }
     }
   }
