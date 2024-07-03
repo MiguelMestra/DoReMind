@@ -14,6 +14,20 @@ class _RegistrationViewState extends State<RegistrationView> {
   final AuthService _auth = AuthService();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  var hidePass;
+
+  @override
+  void initState() {
+    super.initState();
+    hidePass = true;
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void showErrorDialog(String message) {
     showDialog(
@@ -45,7 +59,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     color: Colors.purple[700],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                     height: 20), // Añadir espacio entre el texto y el botón
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -139,13 +153,28 @@ class _RegistrationViewState extends State<RegistrationView> {
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(color: Colors.white)),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: hidePass,
                   controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              hidePass = !hidePass;
+                            });
+                          },
+                          icon: hidePass
+                              ? const Icon(
+                                  Icons.visibility,
+                                  color: Colors.white,
+                                )
+                              : const Icon(
+                                  Icons.visibility_off,
+                                  color: Colors.white,
+                                )),
                       border: InputBorder.none,
                       labelText: 'password',
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                           color: Colors.white60, fontWeight: FontWeight.w700)),
                   onChanged: (value) {},
                   style: const TextStyle(color: Colors.white),
@@ -163,9 +192,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                     showErrorDialog("El correo digitado ya está en uso");
                   } else if (result == 3) {
                     showErrorDialog("Email Invalido");
-                  }  else if (result == 4) {
+                  } else if (result == 4) {
                     showErrorDialog("La contraseña no debe ser vacia");
-                  }else if (result != null) {
+                  } else if (result != null) {
                     Navigator.pushNamed(context, LoginView.id);
                   }
                 },

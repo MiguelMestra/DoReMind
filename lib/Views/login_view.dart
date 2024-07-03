@@ -15,67 +15,24 @@ class _LoginViewState extends State<LoginView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
-  
-void showErrorDialog(String message) {
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Colors.purple[100],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        ),
-        title: Text(
-          'Error',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.purple[900],
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        content: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(
-                message,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.purple[700],
-                ),
-              ),
-              SizedBox(height: 20), // Añadir espacio entre el texto y el botón
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, backgroundColor: Colors.purple[700], // Color del texto del botón
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  'OK',
-                  style: TextStyle(fontSize: 15),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  setState(() {
-                    reset();
-                  });
-                },
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
+  var hidePass;
+
+  @override
+  void initState() {
+    super.initState();
+    hidePass = true;
+  }
 
   void reset() {
     emailController.text = "";
     passwordController.text = "";
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -137,13 +94,18 @@ void showErrorDialog(String message) {
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(color: Colors.white)),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: hidePass,
                   controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(onPressed: () {
+                      setState(() {
+                        hidePass =! hidePass;
+                      });
+                    }, icon: hidePass? const Icon(Icons.visibility,color: Colors.white,) : const Icon(Icons.visibility_off,color: Colors.white,)),
                       border: InputBorder.none,
                       labelText: 'password',
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                           color: Colors.white60, fontWeight: FontWeight.w700)),
                   onChanged: (value) {},
                   style: const TextStyle(color: Colors.white),
@@ -190,4 +152,60 @@ void showErrorDialog(String message) {
       ),
     );
   }
+  void showErrorDialog(String message) {
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.purple[100],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+        ),
+        title: Text(
+          'Error',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.purple[900],
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.purple[700],
+                ),
+              ),
+              const SizedBox(height: 20), // Añadir espacio entre el texto y el botón
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, backgroundColor: Colors.purple[700], // Color del texto del botón
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(fontSize: 15),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    reset();
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
 }
